@@ -31,9 +31,16 @@ class FileCopier {
 //Este principio establece que una clase debe estar abierta a la extensión, pero cerrada a la modificación.
 //Principio de Segregación de Interfaces (ISP):
 //Se aplica este principio debido a que cada uno de los métodos en la interfaz son aplicados y usados por la clase hija
+//Principio de Inversión de Dependencia (DIP):
+//Las clases de alto nivel no deben depender de las clases de bajo nivel. Ambas deben depender de abstracciones.
 interface GeometricFigure {
     public abstract double calcularArea();
     public abstract double calcularPerimetro();
+}
+
+interface GeometricFigureCircle {
+    public abstract double calcularArea();
+    public abstract double calcularDiametro();
 }
 
 class Square implements GeometricFigure{
@@ -51,5 +58,23 @@ class Square implements GeometricFigure{
     @Override
     public double calcularPerimetro() {
         return side*4;
+    }
+}
+
+class Circle implements GeometricFigureCircle{
+
+    public Circle(String name, double side) {
+        this.name = name;
+        this.side = side;
+
+    }
+
+    @Override
+    public double calcularArea() {
+        return (3.1416*(side*side))/2;
+    }
+    @Override
+    public double calcularDiametro() {
+        return side*2;
     }
 }
